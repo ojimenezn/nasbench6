@@ -201,6 +201,7 @@ args = parser.parse_args()
 
 
 if args.benchmark == "nas_cifar10a":
+    print("OMAR: /drive/My Drive/nasbench_full.tfrecord")
     b = NASCifar10A(data_dir=args.data_dir)
 
 elif args.benchmark == "nas_cifar10b":
