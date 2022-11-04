@@ -192,7 +192,7 @@ parser.add_argument('--benchmark', default="nas_cifar10a", type=str, nargs='?', 
 parser.add_argument('--n_iters', default=100, type=int, nargs='?', help='number of iterations for optimization method')
 parser.add_argument('--output_path', default="./", type=str, nargs='?',
                     help='specifies the path where the results will be saved')
-parser.add_argument('--data_dir', default="./", type=str, nargs='?', help='specifies the path to the tabular data')
+parser.add_argument('--data_dir', default="/drive/My Drive/nasbench_full.tfrecord", type=str, nargs='?', help='specifies the path to the tabular data')
 parser.add_argument('--lr', default=1e-1, type=float, nargs='?', help='learning rate')
 parser.add_argument('--momentum', default=0.9, type=float, nargs='?',
                     help='momentum to compute the exponential averaging of the reward')
