@@ -190,9 +190,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--run_id', default=0, type=int, nargs='?', help='unique number to identify this run')
 parser.add_argument('--benchmark', default="nas_cifar10a", type=str, nargs='?', help='specifies the benchmark')
 parser.add_argument('--n_iters', default=100, type=int, nargs='?', help='number of iterations for optimization method')
-parser.add_argument('--output_path', default="./", type=str, nargs='?',
+parser.add_argument('--output_path', default="/drive/My Drive/", type=str, nargs='?',
                     help='specifies the path where the results will be saved')
-parser.add_argument('--data_dir', default="/drive/My Drive/nasbench_full.tfrecord", type=str, nargs='?', help='specifies the path to the tabular data')
+parser.add_argument('--data_dir', default="/drive/My Drive/", type=str, nargs='?', help='specifies the path to the tabular data')
 parser.add_argument('--lr', default=1e-1, type=float, nargs='?', help='learning rate')
 parser.add_argument('--momentum', default=0.9, type=float, nargs='?',
                     help='momentum to compute the exponential averaging of the reward')
@@ -201,7 +201,7 @@ args = parser.parse_args()
 
 
 if args.benchmark == "nas_cifar10a":
-    print("OMAR: /drive/My Drive/nasbench_full.tfrecord")
+    print("OMAR2: /drive/My Drive/nasbench_full.tfrecord")
     b = NASCifar10A(data_dir=args.data_dir)
 
 elif args.benchmark == "nas_cifar10b":
