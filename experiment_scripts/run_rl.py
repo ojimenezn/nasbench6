@@ -81,7 +81,7 @@ class REINFORCEOptimizer(object):
         # edge_dist = tfp.distributions.Categorical(logits=self._edge_logits)
         # op_dist = tfp.distributions.Categorical(logits=self._op_logits)
         dists = [tfp.distributions.Categorical(logits=li) for li in self._logits]
-        print("dist: ", dist)
+        print("dists: ", dists)
         attempts = 0
         while True:
             sample = [di.sample() for di in dists]
