@@ -22,7 +22,6 @@ import tensorflow as tf
 import tensorflow_probability as tfp
 
 from tabular_benchmarks import NASCifar10A, NASCifar10B
-print("MADE IT HERE")
 
 
 class ExponentialMovingAverage(object):
@@ -82,12 +81,15 @@ class REINFORCEOptimizer(object):
         # edge_dist = tfp.distributions.Categorical(logits=self._edge_logits)
         # op_dist = tfp.distributions.Categorical(logits=self._op_logits)
         dists = [tfp.distributions.Categorical(logits=li) for li in self._logits]
+        print("dist: ", dist)
         attempts = 0
         while True:
             sample = [di.sample() for di in dists]
+            print("sample: ", sample)
 
             # Compute the sample reward. Larger rewards are better.
             reward = self._reward.compute_reward(sample)
+            print("reward: ", reward)
             attempts += 1
             if reward > 0.001:
                 # print('num attempts: {}, reward: {}'.format(str(attempts), reward))
@@ -207,18 +209,6 @@ if args.benchmark == "nas_cifar10a":
 elif args.benchmark == "nas_cifar10b":
     b = NASCifar10B(data_dir=args.data_dir)
 
-elif args.benchmark == "protein_structure":
-    b = FCNetProteinStructureBenchmark(data_dir=args.data_dir)
-
-elif args.benchmark == "slice_localization":
-    b = FCNetSliceLocalizationBenchmark(data_dir=args.data_dir)
-
-elif args.benchmark == "naval_propulsion":
-    b = FCNetNavalPropulsionBenchmark(data_dir=args.data_dir)
-
-elif args.benchmark == "parkinsons_telemonitoring":
-    b = FCNetParkinsonsTelemonitoringBenchmark(data_dir=args.data_dir)
-
 output_path = os.path.join(args.output_path, "rl")
 os.makedirs(os.path.join(output_path), exist_ok=True)
 
@@ -244,6 +234,8 @@ trace = run_reinforce(
         bench=b,
         num_steps=args.n_iters,
         log_every_n_steps=100)
+
+print("trace: ", trace)
 
 if args.benchmark == "nas_cifar10a" or args.benchmark == "nas_cifar10b" or args.benchmark == "nas_cifar10c":
     res = b.get_results(ignore_invalid_configs=True)
